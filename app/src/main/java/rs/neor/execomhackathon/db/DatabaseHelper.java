@@ -8,6 +8,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import org.androidannotations.annotations.EBean;
+
 import java.sql.SQLException;
 
 import rs.neor.execomhackathon.model.ItemForSale;
@@ -17,13 +19,14 @@ import rs.neor.execomhackathon.model.User;
  * Created by Radni on 26.05.2017.
  */
 
+@EBean(scope = EBean.Scope.Singleton)
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME    = "execomhackathon.db";
     private static final int    DATABASE_VERSION = 1;
 
-    private Dao<ItemForSale, Integer> itemForSaleDao = null;
-    private Dao<User, Integer> userDao = null;
+    private Dao<ItemForSale, Integer> internalItemForSaleDao = null;
+    private Dao<User, Integer> internalUserDao = null;
 
     //obavezan konstruktor
     public DatabaseHelper(Context context) {
@@ -54,25 +57,35 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
     //Dao objekat za svaku tabelu
-    public Dao<ItemForSale, Integer> getItemForSaleDao() throws SQLException {
-        if (itemForSaleDao == null) {
-            itemForSaleDao = getDao(ItemForSale.class);
+    public Dao<ItemForSale, Integer> getItemForSaleDao() {
+        if (internalItemForSaleDao == null) {
+            try {
+                internalItemForSaleDao = getDao(ItemForSale.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                internalItemForSaleDao = null;
+            }
         }
 
-        return itemForSaleDao;
+        return internalItemForSaleDao;
     }
-    public Dao<User, Integer> getUserDao() throws SQLException {
-        if (userDao == null) {
-            userDao = getDao(User.class);
+    public Dao<User, Integer> getUserDao()  {
+        if (internalUserDao == null) {
+            try {
+                internalUserDao = getDao(User.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                internalUserDao = null;
+            }
         }
 
-        return userDao;
+        return internalUserDao;
     }
 
     @Override
     public void close() {
-        itemForSaleDao = null;
-        userDao = null;
+        internalItemForSaleDao = null;
+        internalUserDao = null;
 
         super.close();
     }
