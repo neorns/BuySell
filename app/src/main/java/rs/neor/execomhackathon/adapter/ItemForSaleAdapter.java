@@ -42,7 +42,7 @@ public class ItemForSaleAdapter extends BaseAdapter {
 
     @AfterInject
     void init(){
-        items = itemForSaleDao.getItems();
+        items = itemForSaleDao.getItems(null);
     }
 
     @Override

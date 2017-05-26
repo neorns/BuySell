@@ -9,19 +9,26 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import rs.neor.execomhackathon.R;
 import rs.neor.execomhackathon.adapter.ItemForSaleAdapter;
 import rs.neor.execomhackathon.db.DatabaseHelper;
-import rs.neor.execomhackathon.model.ItemForSale;
 
 @EActivity(R.layout.activity_base)
-public class MainActivity extends BaseActivity {
+public class BaseActivity extends AppCompatActivity {
+
+    @ViewById
+    GridView gridView;
+
+    @Bean
+    ItemForSaleAdapter itemForSaleAdapter;
+
+    @Bean
+    DatabaseHelper databaseHelper;
 
     @AfterViews
     void init(){
+
+
 
         gridView.setAdapter(itemForSaleAdapter);
 

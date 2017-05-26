@@ -11,6 +11,7 @@ import java.util.List;
 
 import rs.neor.execomhackathon.db.DatabaseHelper;
 import rs.neor.execomhackathon.model.ItemForSale;
+import rs.neor.execomhackathon.model.User;
 
 /**
  * Created by Radni on 26.05.2017.
@@ -19,7 +20,7 @@ import rs.neor.execomhackathon.model.ItemForSale;
 @EBean(scope = EBean.Scope.Singleton)
 public class ItemForSaleDao {
 
-    List<ItemForSale> list; ;
+    List<ItemForSale> itemForSaleList; ;
 
     @Bean
     DatabaseHelper databaseHelper;
@@ -27,17 +28,23 @@ public class ItemForSaleDao {
     @AfterInject
     public void init() {
 
-        list = getItems();
+        itemForSaleList = getItems(null);
 
     }
 
-    public List<ItemForSale> getItems(){
+    public List<ItemForSale> getItems(User user){
         List<ItemForSale> list = null;
-        Dao<ItemForSale, Integer> dao;
-        dao = databaseHelper.getItemForSaleDao();
+        Dao<ItemForSale, Integer> dao = databaseHelper.getItemForSaleDao();
         if (dao != null) {
             try {
-                list = dao.queryForAll();
+                if (user==null){
+                    //items from all users
+                    list = dao.queryForAll();
+                }
+                else {
+                    //items from one user
+                    list = dao.queryForEq(user.USER_FIELD_ID, user.getId());
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
                 list = null;

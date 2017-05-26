@@ -14,10 +14,14 @@ public class User {
     public static final String TABLE_USER = "item_for_sale";
 
     public static final String USER_FIELD_ID = "id";
+    public static final String USER_FIELD_EMAIL = "email";
     public static final String USER_FIELD_NAME = "name";
 
     @DatabaseField(columnName = USER_FIELD_ID, generatedId = true)
     private int id;
+    @DatabaseField(columnName = USER_FIELD_EMAIL)
+    private String email;
+
     @DatabaseField(columnName = USER_FIELD_NAME)
     private String name;
 
@@ -26,6 +30,14 @@ public class User {
 
 
     public User() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
