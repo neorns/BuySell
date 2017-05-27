@@ -1,5 +1,6 @@
 package rs.neor.buysell.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ import rs.neor.buysell.model.User;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
-
+    public static final String EXTRA_USER_ID = "user_id";
     @Bean
     UserDao userDao;
 
@@ -28,7 +29,16 @@ public class LoginActivity extends AppCompatActivity {
 
     @Click
     void buttonLogin(){
-        List<User> list;
+        User user = userDao.getUser(textEmail.getText().toString(),textPassword.getText().toString());
+        if (user!=null){
+            final Intent intent = new Intent();
+            intent.putExtra(EXTRA_USER_ID,user.getId());
+            setResult(RESULT_OK,intent);
+        }
+        else {
+            setResult(RESULT_CANCELED);
+        }
+        finish();
 
     }
 }

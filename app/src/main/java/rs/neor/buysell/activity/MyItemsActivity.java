@@ -33,9 +33,8 @@ public class MyItemsActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Called when button with id=fab is clicked.
-     */
+
+    // Called when fab button is clicked.
     @Click
     void fab() {
         CreateItemActivity_.intent(this).user(user).start();

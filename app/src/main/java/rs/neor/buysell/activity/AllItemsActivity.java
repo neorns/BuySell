@@ -17,11 +17,16 @@ import rs.neor.buysell.adapter.ItemForSaleAdapter;
 import rs.neor.buysell.dao.UserDao;
 import rs.neor.buysell.model.User;
 
-@OptionsMenu(R.menu.single_user)
+import static rs.neor.buysell.activity.LoginActivity.EXTRA_USER_ID;
+
+
+@OptionsMenu(R.menu.menu_all_items)
 @EActivity(R.layout.activity_all_items)
 public class AllItemsActivity extends AppCompatActivity {
     private User user=null;
-    private static final int USER_LOGIN_CODE = 111;
+    private static final int LOGIN_USER_CODE = 111;
+    private static final int MY_ITEMS_CODE = 112;
+    private static final int REGISTER_USER_CODE = 113;
 
 
     @ViewById
@@ -38,24 +43,31 @@ public class AllItemsActivity extends AppCompatActivity {
         gridView.setAdapter(itemForSaleAdapter);
 
     }
-
-    @OnActivityResult(value = USER_LOGIN_CODE)
+    @OnActivityResult(value = LOGIN_USER_CODE)
     void loginSucceeded(int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
             return;
         }
         else {
-            int userId = data.getIntExtra("user_id",-1);
+            int userId = data.getIntExtra(EXTRA_USER_ID,-1);
             if (userId!=-1){
                 user = userDao.getUser(userId);
-                MyItemsActivity_.intent(this).user(user).start();
             }
         }
     }
+    @OnActivityResult(value = MY_ITEMS_CODE)
+    void myItemsLoginSucceeded(int resultCode, Intent data) {
+        loginSucceeded(resultCode,data);
+        if (user!=null) {
+            MyItemsActivity_.intent(this).user(user).start();
+        }
+    }
+
     @OptionsItem
     void myItems() {
         if (user==null){
-            LoginActivity_.intent(this).startForResult(USER_LOGIN_CODE);
+            //login first than start activity in OnActivityResult
+            LoginActivity_.intent(this).startForResult(MY_ITEMS_CODE);
         }
         else {
             MyItemsActivity_.intent(this).user(user).start();
@@ -63,7 +75,17 @@ public class AllItemsActivity extends AppCompatActivity {
 
     }
     @OptionsItem
+    void registerUser() {
+        RegisterActivity_.intent(this).startForResult(REGISTER_USER_CODE);
+    }
+
+    @OptionsItem
     void loginUser() {
-        LoginActivity_.intent(this).startForResult(USER_LOGIN_CODE);
+        LoginActivity_.intent(this).startForResult(LOGIN_USER_CODE);
+    }
+
+    @OptionsItem
+    void logoutUser() {
+        user=null;
     }
 }

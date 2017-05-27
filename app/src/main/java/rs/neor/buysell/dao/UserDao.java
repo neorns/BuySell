@@ -60,4 +60,12 @@ public class UserDao {
             return null;
         }
     }
+
+    public void insert(User user){
+        try {
+            dao.create(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
