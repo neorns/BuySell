@@ -1,5 +1,6 @@
 package rs.neor.buysell.dao;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import org.androidannotations.annotations.AfterInject;
@@ -12,6 +13,7 @@ import java.util.List;
 import rs.neor.buysell.db.DatabaseHelper;
 import rs.neor.buysell.model.User;
 
+import static rs.neor.buysell.db.DatabaseHelper.databaseHelper;
 import static rs.neor.buysell.model.User.USER_FIELD_EMAIL;
 import static rs.neor.buysell.model.User.USER_FIELD_ID;
 
@@ -24,11 +26,9 @@ public class UserDao {
 
     Dao<User, Integer> dao;
 
-    @Bean
-    DatabaseHelper databaseHelper;
-
     @AfterInject
     public void init() {
+
         dao = databaseHelper.getUserDao();
     }
 

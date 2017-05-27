@@ -63,12 +63,14 @@
 
         <Button
             android:id="@+id/buttonRegister"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
             />
         <Button
             android:id="@+id/buttonCancel"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"

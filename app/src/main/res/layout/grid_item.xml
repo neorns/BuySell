@@ -16,9 +16,7 @@
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@+id/label"
-            android:layout_marginTop="5px"
-            android:textSize="15px" >
+             >
         </TextView>
 
 

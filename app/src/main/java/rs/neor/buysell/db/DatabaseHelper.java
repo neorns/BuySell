@@ -19,10 +19,12 @@ import rs.neor.buysell.model.User;
  * Created by Radni on 26.05.2017.
  */
 
-@EBean(scope = EBean.Scope.Singleton)
+
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DATABASE_NAME    = "execomhackathon.db";
+    public static DatabaseHelper databaseHelper;
+
+    private static final String DATABASE_NAME    = "buysell.db";
     private static final int    DATABASE_VERSION = 1;
 
     private Dao<ItemForSale, Integer> internalItemForSaleDao = null;

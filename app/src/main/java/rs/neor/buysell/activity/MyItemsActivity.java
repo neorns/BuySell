@@ -28,7 +28,7 @@ public class MyItemsActivity extends AppCompatActivity {
 
     @AfterViews
     void init(){
-
+        itemForSaleAdapter.setUser(user);
         gridView.setAdapter(itemForSaleAdapter);
 
     }

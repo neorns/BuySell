@@ -16,6 +16,8 @@ import rs.neor.buysell.R;
 import rs.neor.buysell.dao.UserDao;
 import rs.neor.buysell.model.User;
 
+import static rs.neor.buysell.tools.Tools.getSha1Hex;
+
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
     public static final String EXTRA_USER_ID = "user_id";
@@ -29,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Click
     void buttonLogin(){
-        User user = userDao.getUser(textEmail.getText().toString(),textPassword.getText().toString());
+        User user = userDao.getUser(textEmail.getText().toString(),getSha1Hex(textPassword.getText().toString()));
         if (user!=null){
             final Intent intent = new Intent();
             intent.putExtra(EXTRA_USER_ID,user.getId());

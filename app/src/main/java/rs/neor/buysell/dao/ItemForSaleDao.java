@@ -13,6 +13,8 @@ import rs.neor.buysell.db.DatabaseHelper;
 import rs.neor.buysell.model.ItemForSale;
 import rs.neor.buysell.model.User;
 
+import static rs.neor.buysell.db.DatabaseHelper.databaseHelper;
+
 /**
  * Created by Radni on 26.05.2017.
  */
@@ -22,8 +24,7 @@ public class ItemForSaleDao {
 
     List<ItemForSale> itemForSaleList; ;
     Dao<ItemForSale, Integer> dao;
-    @Bean
-    DatabaseHelper databaseHelper;
+
 
     @AfterInject
     public void init() {
@@ -41,7 +42,7 @@ public class ItemForSaleDao {
                 }
                 else {
                     //items from one user
-                    list = dao.queryForEq(user.USER_FIELD_ID, user.getId());
+                    list = dao.queryForEq(ItemForSale.ITEMFORSALE_FIELD_USER, user.getId());
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

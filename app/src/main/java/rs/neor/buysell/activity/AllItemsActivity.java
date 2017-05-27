@@ -39,9 +39,8 @@ public class AllItemsActivity extends AppCompatActivity {
 
     @AfterViews
     void init(){
-
+        itemForSaleAdapter.setUser(null);
         gridView.setAdapter(itemForSaleAdapter);
-
     }
     @OnActivityResult(value = LOGIN_USER_CODE)
     void loginSucceeded(int resultCode, Intent data) {

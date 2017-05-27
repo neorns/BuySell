@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @DatabaseTable(tableName = User.TABLE_USER)
 public class User implements Serializable {
-    public static final String TABLE_USER = "item_for_sale";
+    public static final String TABLE_USER = "user";
 
     public static final String USER_FIELD_ID = "id";
     public static final String USER_FIELD_EMAIL = "email";

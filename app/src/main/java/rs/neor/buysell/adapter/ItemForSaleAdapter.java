@@ -15,6 +15,9 @@ import java.util.List;
 
 import rs.neor.buysell.dao.ItemForSaleDao;
 import rs.neor.buysell.model.ItemForSale;
+import rs.neor.buysell.model.User;
+import rs.neor.buysell.view.ItemForSaleView;
+import rs.neor.buysell.view.ItemForSaleView_;
 
 /**
  * Created by Radni on 26.05.2017.
@@ -23,7 +26,7 @@ import rs.neor.buysell.model.ItemForSale;
 @EBean
 public class ItemForSaleAdapter extends BaseAdapter {
 
-
+    private User user = null;
     private List<ItemForSale> items = new ArrayList<>();
 
     private final LayoutInflater layoutInflater;
@@ -40,7 +43,12 @@ public class ItemForSaleAdapter extends BaseAdapter {
 
     @AfterInject
     void init(){
-        items = itemForSaleDao.getItems(null);
+        items = itemForSaleDao.getItems(user);
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        items = itemForSaleDao.getItems(user);
     }
 
     @Override
@@ -49,7 +57,7 @@ public class ItemForSaleAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public ItemForSale getItem(int position) {
         return items.get(position);
     }
 
@@ -60,6 +68,19 @@ public class ItemForSaleAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+
+        final ItemForSaleView itemForSaleView;
+
+        if (convertView == null) {  // if view item is not created
+            itemForSaleView = ItemForSaleView_.build(context);
+        } else {    // if view item was already created
+            itemForSaleView = (ItemForSaleView_) convertView;
+        }
+
+        // bind data to view
+        itemForSaleView.bind(getItem(position));
+
+        return itemForSaleView;
+
     }
 }
