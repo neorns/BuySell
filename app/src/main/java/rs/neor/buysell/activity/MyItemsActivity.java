@@ -37,6 +37,7 @@ public class MyItemsActivity extends AppCompatActivity {
         itemForSaleAdapter.setUser(user);
         setGridColumns();
         gridView.setAdapter(itemForSaleAdapter);
+        setTitle("My Items");
 
     }
 
