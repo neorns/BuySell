@@ -1,4 +1,4 @@
-package rs.neor.execomhackathon.adapter;
+package rs.neor.buysell.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,14 +9,12 @@ import android.widget.BaseAdapter;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rs.neor.execomhackathon.dao.ItemForSaleDao;
-import rs.neor.execomhackathon.db.DatabaseHelper;
-import rs.neor.execomhackathon.model.ItemForSale;
+import rs.neor.buysell.dao.ItemForSaleDao;
+import rs.neor.buysell.model.ItemForSale;
 
 /**
  * Created by Radni on 26.05.2017.

@@ -1,19 +1,25 @@
-package rs.neor.execomhackathon.model;
+package rs.neor.buysell.model;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by Radni on 26.05.2017.
  */
 
 @DatabaseTable(tableName = ItemForSale.TABLE_ITEMFORSALE)
-public class ItemForSale {
-    public static final String TABLE_ITEMFORSALE = "item_for_sale";
+public class ItemForSale implements Serializable {
+    public static final String TABLE_ITEMFORSALE = "itemforsale";
 
     public static final String ITEMFORSALE_FIELD_ID = "id";
     public static final String ITEMFORSALE_FIELD_NAME = "name";
     public static final String ITEMFORSALE_FIELD_DESCRIPTION = "description";
+    public static final String ITEMFORSALE_FIELD_PRICE = "price";
+    public static final String ITEMFORSALE_FIELD_DATE = "date";
     public static final String ITEMFORSALE_FIELD_USER = "user";
 
     @DatabaseField(columnName = ITEMFORSALE_FIELD_ID, generatedId = true)
@@ -22,7 +28,26 @@ public class ItemForSale {
     private String name;
     @DatabaseField(columnName = ITEMFORSALE_FIELD_DESCRIPTION)
     private String description;
+    @DatabaseField(columnName = ITEMFORSALE_FIELD_PRICE)
+    private BigDecimal price;
+    @DatabaseField(columnName = ITEMFORSALE_FIELD_DATE)
+    private Date date;
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     @DatabaseField(columnName = ITEMFORSALE_FIELD_USER, foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private User user;

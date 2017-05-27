@@ -1,4 +1,4 @@
-package rs.neor.execomhackathon.db;
+package rs.neor.buysell.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,8 +12,8 @@ import org.androidannotations.annotations.EBean;
 
 import java.sql.SQLException;
 
-import rs.neor.execomhackathon.model.ItemForSale;
-import rs.neor.execomhackathon.model.User;
+import rs.neor.buysell.model.ItemForSale;
+import rs.neor.buysell.model.User;
 
 /**
  * Created by Radni on 26.05.2017.

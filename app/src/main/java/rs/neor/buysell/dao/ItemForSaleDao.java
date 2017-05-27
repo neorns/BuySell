@@ -1,4 +1,4 @@
-package rs.neor.execomhackathon.dao;
+package rs.neor.buysell.dao;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -9,9 +9,9 @@ import org.androidannotations.annotations.EBean;
 import java.sql.SQLException;
 import java.util.List;
 
-import rs.neor.execomhackathon.db.DatabaseHelper;
-import rs.neor.execomhackathon.model.ItemForSale;
-import rs.neor.execomhackathon.model.User;
+import rs.neor.buysell.db.DatabaseHelper;
+import rs.neor.buysell.model.ItemForSale;
+import rs.neor.buysell.model.User;
 
 /**
  * Created by Radni on 26.05.2017.
@@ -21,20 +21,18 @@ import rs.neor.execomhackathon.model.User;
 public class ItemForSaleDao {
 
     List<ItemForSale> itemForSaleList; ;
-
+    Dao<ItemForSale, Integer> dao;
     @Bean
     DatabaseHelper databaseHelper;
 
     @AfterInject
     public void init() {
-
+        dao = databaseHelper.getItemForSaleDao();
         itemForSaleList = getItems(null);
-
     }
 
     public List<ItemForSale> getItems(User user){
         List<ItemForSale> list = null;
-        Dao<ItemForSale, Integer> dao = databaseHelper.getItemForSaleDao();
         if (dao != null) {
             try {
                 if (user==null){
@@ -53,4 +51,26 @@ public class ItemForSaleDao {
         return list;
     }
 
+    public void insert(ItemForSale itemForSale){
+        try {
+            dao.create(itemForSale);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(ItemForSale itemForSale){
+        try {
+            dao.update(itemForSale);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void delete(ItemForSale itemForSale){
+        try {
+            dao.delete(itemForSale);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

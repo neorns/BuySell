@@ -1,4 +1,4 @@
-package rs.neor.execomhackathon;
+package rs.neor.buysell;
 
 import org.junit.Test;
 

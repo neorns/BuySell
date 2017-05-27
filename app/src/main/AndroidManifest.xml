@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="rs.neor.execomhackathon">
+    package="rs.neor.buysell">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity_">
+        <activity android:name=".activity.AllItemsActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailActivity_" />
-        <activity android:name=".activity.SingleUserActivity_"></activity>
+        <activity android:name=".activity.MyItemsActivity_" />
+        <activity android:name=".activity.CreateItemActivity_" />
+        <activity android:name=".activity.LoginActivity_"></activity>
     </application>
 
 </manifest>

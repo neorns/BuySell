@@ -1,16 +1,18 @@
-package rs.neor.execomhackathon.model;
+package rs.neor.buysell.model;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by Radni on 26.05.2017.
  */
 
 @DatabaseTable(tableName = User.TABLE_USER)
-public class User {
+public class User implements Serializable {
     public static final String TABLE_USER = "item_for_sale";
 
     public static final String USER_FIELD_ID = "id";

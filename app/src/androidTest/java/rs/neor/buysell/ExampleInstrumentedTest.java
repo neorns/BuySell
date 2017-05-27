@@ -1,4 +1,4 @@
-package rs.neor.execomhackathon;
+package rs.neor.buysell;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
