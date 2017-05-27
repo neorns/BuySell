@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="Display"
+        android:key="display_settings">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="two_columns"
+            android:summary="Display items in two columns"
+            android:title="Two columns" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

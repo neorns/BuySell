@@ -1,6 +1,8 @@
 package rs.neor.buysell.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
@@ -28,6 +30,8 @@ public class AllItemsActivity extends AppCompatActivity {
     private static final int MY_ITEMS_CODE = 112;
     private static final int REGISTER_USER_CODE = 113;
 
+    private SharedPreferences sharedPreferences;
+    private boolean twoColumns;
 
     @ViewById
     GridView gridView;
@@ -40,7 +44,30 @@ public class AllItemsActivity extends AppCompatActivity {
     @AfterViews
     void init(){
         itemForSaleAdapter.setUser(null);
+        setGridColumns();
         gridView.setAdapter(itemForSaleAdapter);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setGridColumns();
+    }
+
+    private void setGridColumns(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        twoColumns = sharedPreferences.getBoolean("two_columns", false);
+        if (twoColumns) {
+            if (gridView.getNumColumns()!=2){
+                gridView.setNumColumns(2);
+            }
+        }
+        else {
+            if (gridView.getNumColumns()!=1) {
+                gridView.setNumColumns(1);
+            }
+        }
     }
     @OnActivityResult(value = LOGIN_USER_CODE)
     void loginSucceeded(int resultCode, Intent data) {
@@ -86,5 +113,11 @@ public class AllItemsActivity extends AppCompatActivity {
     @OptionsItem
     void logoutUser() {
         user=null;
+    }
+
+    @OptionsItem
+    void settings() {
+        Intent intent = new Intent(AllItemsActivity.this,SettingsActivity.class);
+        startActivity(intent);
     }
 }

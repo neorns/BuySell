@@ -1,5 +1,7 @@
 package rs.neor.buysell.activity;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
@@ -16,6 +18,10 @@ import rs.neor.buysell.model.User;
 
 @EActivity(R.layout.activity_my_items)
 public class MyItemsActivity extends AppCompatActivity {
+
+    private SharedPreferences sharedPreferences;
+    private boolean twoColumns;
+
     @Extra
     User user;
 
@@ -29,10 +35,25 @@ public class MyItemsActivity extends AppCompatActivity {
     @AfterViews
     void init(){
         itemForSaleAdapter.setUser(user);
+        setGridColumns();
         gridView.setAdapter(itemForSaleAdapter);
 
     }
 
+    private void setGridColumns(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        twoColumns = sharedPreferences.getBoolean("two_columns", false);
+        if (twoColumns) {
+            if (gridView.getNumColumns()!=2){
+                gridView.setNumColumns(2);
+            }
+        }
+        else {
+            if (gridView.getNumColumns()!=1) {
+                gridView.setNumColumns(1);
+            }
+        }
+    }
 
     // Called when fab button is clicked.
     @Click

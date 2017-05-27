@@ -21,7 +21,9 @@
         <activity android:name=".activity.MyItemsActivity_" />
         <activity android:name=".activity.CreateItemActivity_" />
         <activity android:name=".activity.LoginActivity_" />
-        <activity android:name=".activity.RegisterActivity_"></activity>
+        <activity android:name=".activity.RegisterActivity_" />
+        <activity android:name=".activity.SettingsActivity" />
+
     </application>
 
 </manifest>
