@@ -10,10 +10,12 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 
 import rs.neor.buysell.R;
 import rs.neor.buysell.adapter.ItemForSaleAdapter;
+import rs.neor.buysell.model.ItemForSale;
 import rs.neor.buysell.model.User;
 
 @EActivity(R.layout.activity_my_items)
@@ -39,6 +41,14 @@ public class MyItemsActivity extends AppCompatActivity {
         gridView.setAdapter(itemForSaleAdapter);
         setTitle("My Items");
 
+    }
+
+    @ItemClick
+    void gridViewItemClicked(ItemForSale item) {
+        DetailActivity_.intent(this)
+                .itemForSale(item)
+                .isMyItem(true)
+                .start();
     }
 
     private void setGridColumns(){

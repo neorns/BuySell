@@ -90,4 +90,12 @@ public class User implements Serializable {
     public void setItems(ForeignCollection<ItemForSale> items) {
         this.items = items;
     }
+
+    @Override
+    public String toString() {
+        return "Contact information\n" +
+                "Name: " + name + '\n' +
+                "e-mail: " + email + '\n' +
+                "Phone: " + phone;
+    }
 }

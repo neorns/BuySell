@@ -25,7 +25,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public static DatabaseHelper databaseHelper;
 
     private static final String DATABASE_NAME    = "buysell.db";
-    private static final int    DATABASE_VERSION = 1;
+    private static final int    DATABASE_VERSION = 2;
 
     private Dao<ItemForSale, Integer> internalItemForSaleDao = null;
     private Dao<User, Integer> internalUserDao = null;

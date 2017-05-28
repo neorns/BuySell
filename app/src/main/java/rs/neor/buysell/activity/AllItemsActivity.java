@@ -9,6 +9,7 @@ import android.widget.GridView;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -17,6 +18,7 @@ import org.androidannotations.annotations.ViewById;
 import rs.neor.buysell.R;
 import rs.neor.buysell.adapter.ItemForSaleAdapter;
 import rs.neor.buysell.dao.UserDao;
+import rs.neor.buysell.model.ItemForSale;
 import rs.neor.buysell.model.User;
 
 import static rs.neor.buysell.activity.LoginActivity.EXTRA_USER_ID;
@@ -48,6 +50,14 @@ public class AllItemsActivity extends AppCompatActivity {
         gridView.setAdapter(itemForSaleAdapter);
         setTitle("All Items");
 
+    }
+
+    @ItemClick
+    void gridViewItemClicked(ItemForSale item) {
+        DetailActivity_.intent(this)
+                .itemForSale(item)
+                .isMyItem(false)
+                .start();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package rs.neor.buysell.model;
 
+import android.net.Uri;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -21,6 +23,7 @@ public class ItemForSale implements Serializable {
     public static final String ITEMFORSALE_FIELD_PRICE = "price";
     public static final String ITEMFORSALE_FIELD_DATE = "date";
     public static final String ITEMFORSALE_FIELD_USER = "user";
+    public static final String ITEMFORSALE_FIELD_PHOTO = "photo";
 
     @DatabaseField(columnName = ITEMFORSALE_FIELD_ID, generatedId = true)
     private int id;
@@ -32,6 +35,21 @@ public class ItemForSale implements Serializable {
     private BigDecimal price;
     @DatabaseField(columnName = ITEMFORSALE_FIELD_DATE)
     private Date date;
+    @DatabaseField(columnName = ITEMFORSALE_FIELD_PHOTO)
+    private String photo;
+
+    public Uri getPhoto() {
+        if (photo==null||photo==""){
+            return null;
+        }
+        else {
+            return Uri.parse(photo);
+        }
+    }
+
+    public void setPhoto(Uri photo) {
+        this.photo = photo.toString();
+    }
 
     public BigDecimal getPrice() {
         return price;

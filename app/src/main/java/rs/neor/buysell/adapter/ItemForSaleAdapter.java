@@ -53,7 +53,12 @@ public class ItemForSaleAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return items.size();
+        if (items==null){
+            return 0;
+        }
+        else {
+            return items.size();
+        }
     }
 
     @Override
