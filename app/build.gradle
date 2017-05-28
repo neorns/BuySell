@@ -30,6 +30,7 @@ dependencies {
 
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
+
     compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
 
     compile 'com.android.support:design:25.3.1'

@@ -15,6 +15,7 @@ import org.androidannotations.annotations.ViewById;
 
 import rs.neor.buysell.R;
 import rs.neor.buysell.adapter.ItemForSaleAdapter;
+import rs.neor.buysell.adapter.ItemForSaleUserAdapter;
 import rs.neor.buysell.model.ItemForSale;
 import rs.neor.buysell.model.User;
 
@@ -31,14 +32,15 @@ public class MyItemsActivity extends AppCompatActivity {
     GridView gridView;
 
     @Bean
-    ItemForSaleAdapter itemForSaleAdapter;
+    ItemForSaleUserAdapter itemForSaleUserAdapter;
 
 
     @AfterViews
     void init(){
-        itemForSaleAdapter.setUser(user);
+        itemForSaleUserAdapter.setUser(user);
         setGridColumns();
-        gridView.setAdapter(itemForSaleAdapter);
+        gridView.setAdapter(itemForSaleUserAdapter);
+        itemForSaleUserAdapter.init();
         setTitle("My Items");
 
     }
@@ -66,7 +68,7 @@ public class MyItemsActivity extends AppCompatActivity {
         }
     }
 
-    // Called when fab button is clicked.
+    //Called when fab button is clicked.
     @Click
     void fab() {
         CreateItemActivity_.intent(this).user(user).start();

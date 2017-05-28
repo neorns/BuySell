@@ -51,12 +51,11 @@ public class DetailActivity extends AppCompatActivity {
         textName.setText(itemForSale.getName());
         textDescription.setText(itemForSale.getDescription());
         textPrice.setText("$"+String.format("%1.2f",itemForSale.getPrice()));
-        //textDate.setText(itemForSale.getDate().toString());
         textDate.setText("Item added: " + android.text.format.DateFormat.getDateFormat(getApplicationContext()).format(itemForSale.getDate()));
-
         textContactInfo.setText(itemForSale.getUser().toString());
         itemPhoto.setImageURI(itemForSale.getPhoto());
 
+        //User can delete only his own items
         if (isMyItem){
             buttonDelete.setVisibility(View.VISIBLE);
         }

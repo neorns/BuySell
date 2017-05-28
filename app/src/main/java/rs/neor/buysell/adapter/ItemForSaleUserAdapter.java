@@ -24,7 +24,7 @@ import rs.neor.buysell.view.ItemForSaleView_;
  */
 
 @EBean
-public class ItemForSaleAdapter extends BaseAdapter implements ItemForSaleDao.RefreshData {
+public class ItemForSaleUserAdapter extends BaseAdapter implements ItemForSaleDao.RefreshData {
 
     private User user = null;
     private List<ItemForSale> items = new ArrayList<>();
@@ -33,7 +33,7 @@ public class ItemForSaleAdapter extends BaseAdapter implements ItemForSaleDao.Re
 
     private final Context context;
 
-    public ItemForSaleAdapter( Context context) {
+    public ItemForSaleUserAdapter(Context context) {
         this.context = context;
         //this.layoutInflater = LayoutInflater.from(context);
     }
@@ -44,7 +44,7 @@ public class ItemForSaleAdapter extends BaseAdapter implements ItemForSaleDao.Re
 
     @AfterInject
     public void init(){
-        itemForSaleDao.setAllItems(this);
+        itemForSaleDao.setMyItems(this);
         items = itemForSaleDao.getItems(user);
     }
 

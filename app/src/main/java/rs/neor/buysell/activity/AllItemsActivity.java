@@ -48,6 +48,7 @@ public class AllItemsActivity extends AppCompatActivity {
         itemForSaleAdapter.setUser(null);
         setGridColumns();
         gridView.setAdapter(itemForSaleAdapter);
+        itemForSaleAdapter.init();
         setTitle("All Items");
 
     }
@@ -103,10 +104,11 @@ public class AllItemsActivity extends AppCompatActivity {
     @OptionsItem
     void myItems() {
         if (user==null){
-            //login first than start activity in OnActivityResult
+            //if no user is logged, do login first than start MyItemsActivity in OnActivityResult
             LoginActivity_.intent(this).startForResult(MY_ITEMS_CODE);
         }
         else {
+            //start MyItemsActivity
             MyItemsActivity_.intent(this).user(user).start();
         }
 
