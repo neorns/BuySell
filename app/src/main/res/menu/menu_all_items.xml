@@ -7,26 +7,26 @@
 
     <item
         android:id="@+id/myItems"
-        android:title="My Items"
+        android:title="@string/my_items"
         app:showAsAction="collapseActionView"/>
 
     <item
         android:id="@+id/loginUser"
-        android:title="Login"
+        android:title="@string/login"
         app:showAsAction="collapseActionView"/>
 
     <item
         android:id="@+id/registerUser"
-        android:title="Register"
+        android:title="@string/register"
         app:showAsAction="collapseActionView"/>
 
     <item
         android:id="@+id/logoutUser"
-        android:title="Logout"
+        android:title="@string/logout"
         app:showAsAction="collapseActionView"/>
     <item
         android:id="@+id/settings"
-        android:title="Settings"
+        android:title="@string/settings"
         android:icon="@drawable/ic_settings_white_24dp"
         app:showAsAction="collapseActionView"/>
 

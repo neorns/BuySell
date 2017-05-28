@@ -41,7 +41,7 @@ public class MyItemsActivity extends AppCompatActivity {
         setGridColumns();
         gridView.setAdapter(itemForSaleUserAdapter);
         itemForSaleUserAdapter.init();
-        setTitle("My Items");
+        setTitle(getString(R.string.my_items));
 
     }
 
@@ -55,7 +55,7 @@ public class MyItemsActivity extends AppCompatActivity {
 
     private void setGridColumns(){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        twoColumns = sharedPreferences.getBoolean("two_columns", false);
+        twoColumns = sharedPreferences.getBoolean(getString(R.string.pref_two_columns), false);
         if (twoColumns) {
             if (gridView.getNumColumns()!=2){
                 gridView.setNumColumns(2);
